@@ -37,6 +37,7 @@ export const RowInput = styled.input`
   margin-left: 10%;
   font-size: 16px;
   cursor: pointer;
+  height: 20%;
   &:focus {
     cursor: text;
   }

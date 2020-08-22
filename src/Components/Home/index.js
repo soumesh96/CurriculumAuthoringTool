@@ -88,21 +88,9 @@ const Home = () => {
   const onRowDeleteHandler = (id) => {
     const updateData = [...rowData];
     const index = updateData.findIndex((data) => data.id === id);
-    // let nextIndex = index + 1;
+
+    // getting the child elements
     getUpdatedChildElements(updateData, index, null, 'delete');
-    // if (index > -1) {
-    //   const elementToBeDeleted = [updateData[index]];
-    //   // getting the child elements
-    //   while (updateData.length > nextIndex) {
-    //     if (updateData[nextIndex].hierarchy > updateData[index].hierarchy)
-    //       elementToBeDeleted.push(updateData[nextIndex]);
-    //     else break;
-    //     nextIndex++;
-    //   }
-    //   // remove element
-    //   updateData.splice(index, elementToBeDeleted.length);
-    //   updateList(updateData);
-    // }
   };
 
   const onDropHandler = (e, id) => {
@@ -110,22 +98,10 @@ const Home = () => {
     const dragItemId = Number(e.dataTransfer.getData("id"));
     const droppingIndex = updateData.findIndex((data) => data.id === id);
     const draggedIndex = updateData.findIndex((data) => data.id === dragItemId);
-    // let nextIndex = draggedIndex + 1;
+
     // getting the child elements
     getUpdatedChildElements(updateData, draggedIndex, droppingIndex, 'drop');
-    // const elementToBeMoved = [updateData[draggedIndex]];
-    // getting the child elements
-    // while (updateData.length > nextIndex) {
-    //   if (updateData[nextIndex].hierarchy > updateData[draggedIndex].hierarchy)
-    //     elementToBeMoved.push(updateData[nextIndex]);
-    //   else break;
-    //   nextIndex++;
-    // }
-    // // remove element
-    // updateData.splice(draggedIndex, elementToBeMoved.length);
-    // // add element
-    // updateData.splice(droppingIndex, 0, ...elementToBeMoved);
-    // updateList(updateData);
+
     // enabling the visibility of tooltip
     setIsVisibleToolTip(true);
   };
