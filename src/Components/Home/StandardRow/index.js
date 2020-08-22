@@ -5,9 +5,36 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 
 import { StandardRowCon, IconGroupCon, RowInput, InputWrapper, IconWrapper } from './skins';
+import ToolTip from '../../Common/ToolTip';
 
 const StandardRow = (props) => {
-  const { id, hierarchy, content, handleDragStart, handleDragOver, handleOnDrop, handleChangeInput, handleIndent, handleOutdent, handleDelete } = props;
+  const { id, hierarchy, content, handleDragStart, handleDragOver, handleOnDrop, handleChangeInput, handleAction, handleDelete, isVisibleToolTip } = props;
+  const IconAction = [
+    {
+      action: 'Move',
+      onClick: null,
+      icon: faArrowsAlt,
+      disabled: false,
+    },
+    {
+      action: 'Indent',
+      onClick: (!(hierarchy === 1) ? () => handleAction(id, 'indent') : null),
+      icon: faArrowLeft,
+      disabled: hierarchy === 1,
+    },
+    {
+      action: 'Outdent',
+      onClick: (!(hierarchy === 3) ? () => handleAction(id, 'outdent') : null),
+      icon: faArrowRight,
+      disabled: hierarchy === 3,
+    },
+    {
+      action: 'Delete',
+      onClick: () => handleDelete(id),
+      icon: faTrash,
+      disabled: false,
+    },
+  ];
 
   const getSubTextColor = (hierarchy) => {
     let color = '';
@@ -32,21 +59,24 @@ const StandardRow = (props) => {
         jc="space-evenly"
         ai="center"
       >
-        <IconWrapper icon={faArrowsAlt} />
-        <IconWrapper
-          icon={faArrowLeft}
-          onClick={!(hierarchy === 1) ? () => handleIndent(id) : null}
-          disabled={hierarchy === 1}
-        />
-        <IconWrapper
-          icon={faArrowRight}
-          onClick={!(hierarchy === 4) ? () => handleOutdent(id) : null}
-          disabled={hierarchy === 4}
-        />
-        <IconWrapper icon={faTrash} onClick={() => handleDelete(id)} />
+        {IconAction && IconAction.map(data => (
+          <ToolTip
+            key={data.action}
+            message={data.action}
+            position="top"
+            isVisibleToolTip={isVisibleToolTip}
+          >
+            <IconWrapper
+              icon={data.icon}
+              onClick={data.onClick ? data.onClick : null}
+              disabled={data.disabled}
+            />
+          </ToolTip>
+        ))}
       </IconGroupCon>
       <InputWrapper marLeft={hierarchy * 4} ai="center">
         <RowInput
+          autoFocus
           placeholder="Start Typing Standards ..."
           value={content}
           type="text"

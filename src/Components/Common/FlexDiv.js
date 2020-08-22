@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const BFlexDiv = styled.div`
+const FlexDiv = styled.div`
 	display: flex;
   ${props => props.jc ? 'justify-content:' + props.jc + ';' : ''}
   ${props => props.fd ? 'flex-direction:' + props.fd + ';' : ''}
@@ -12,4 +12,4 @@ const BFlexDiv = styled.div`
 `;
 
 
-export default BFlexDiv;
+export default FlexDiv;

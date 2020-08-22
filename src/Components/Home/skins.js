@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import BFlexDiv from '../Common/BFlexDiv';
+import FlexDiv from '../Common/FlexDiv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const HomeCon = styled.div`
@@ -27,7 +27,7 @@ export const IconWrapper = styled(FontAwesomeIcon)`
   }
 `;
 
-export const InputWrapper = styled(BFlexDiv)`
+export const InputWrapper = styled(FlexDiv)`
   margin-left: 10%;
   ${props => props.marLeft && `margin-left: ${props.marLeft}%;`}
   width: ${props => props.marLeft ? `${100 - props.marLeft -15}` : '75'}%;

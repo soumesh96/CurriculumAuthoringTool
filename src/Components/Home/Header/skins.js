@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import BFlexDiv from '../../Common/BFlexDiv';
+import FlexDiv from '../../Common/FlexDiv';
 
 export const MainHeader = styled.p`
   margin: 0;
@@ -9,7 +9,7 @@ export const MainHeader = styled.p`
   color: #a9a9a9;
 `;
 
-export const SubHeadingWrapper = styled(BFlexDiv)`
+export const SubHeadingWrapper = styled(FlexDiv)`
   width: 100%;
   padding: 12px 0;
   border-bottom: 1px solid #a9a9a9;
